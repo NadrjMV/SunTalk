@@ -10,15 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/Pq5yVnqg/SunTalk.png">
-
 
     <!-- Link para o arquivo de estilo principal -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Container do Login/Cadastro -->
     <div id="login-container">
         <div class="login-card">
             <div class="branding-panel">
@@ -30,14 +29,8 @@
                 <div id="login-form-container">
                     <h3>Acesse sua Conta</h3>
                     <form id="login-form">
-                        <div class="input-group">
-                            <label for="login-email">E-mail</label>
-                            <input type="email" id="login-email" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="login-password">Senha</label>
-                            <input type="password" id="login-password" required>
-                        </div>
+                        <div class="input-group"><label for="login-email">E-mail</label><input type="email" id="login-email" required></div>
+                        <div class="input-group"><label for="login-password">Senha</label><input type="password" id="login-password" required></div>
                         <button type="submit" class="cta-button-blue">Entrar</button>
                         <p class="toggle-link">Não tem uma conta? <a href="#" id="show-signup">Cadastre-se</a></p>
                     </form>
@@ -45,32 +38,20 @@
                 <div id="signup-form-container" class="hidden">
                     <h3>Crie sua Conta</h3>
                     <form id="signup-form">
-                        <div class="input-group">
-                            <label for="signup-name">Nome Completo</label>
-                            <input type="text" id="signup-name" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="signup-email">E-mail Corporativo</label>
-                            <input type="email" id="signup-email" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="signup-password">Senha</label>
-                            <input type="password" id="signup-password" required>
-                        </div>
+                        <div class="input-group"><label for="signup-name">Nome Completo</label><input type="text" id="signup-name" required></div>
+                        <div class="input-group"><label for="signup-email">E-mail Corporativo</label><input type="email" id="signup-email" required></div>
+                        <div class="input-group"><label for="signup-password">Senha</label><input type="password" id="signup-password" required></div>
                         <button type="submit" class="cta-button-blue">Criar Conta</button>
                         <p class="toggle-link">Já tem uma conta? <a href="#" id="show-login">Faça o login</a></p>
                     </form>
                 </div>
-    <div class="login-card">
-        </div> 
+            </div>
+        </div>
         <footer class="page-footer">
             <a href="https://www.instagram.com/weblv.dev" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.postimg.cc/xCxH4gGM/sd.png">
             </a>
         </footer>
-        </div>
-            </div>
-        </div>
     </div>
 
     <!-- Container da Plataforma Principal (para colaboradores) -->
@@ -82,49 +63,26 @@
             <nav class="main-nav">
                 <h3>Menu</h3>
                 <ul>
-                    <li class="nav-item active" data-target="mural-section">
-                        <span class="material-symbols-outlined">dashboard</span>
-                        <span>Mural Principal</span>
-                    </li>
-                    <li class="nav-item" data-target="profile-section">
-                        <span class="material-symbols-outlined">person</span>
-                        <span>Meu Perfil</span>
-                    </li>
-                    <li class="nav-item" data-target="files-section">
-                        <span class="material-symbols-outlined">folder</span>
-                        <span>Arquivos</span>
+                    <li class="nav-item active" data-target="mural-section"><span class="material-symbols-outlined">dashboard</span><span>Mural Principal</span></li>
+                    <li class="nav-item" data-target="profile-section"><span class="material-symbols-outlined">person</span><span>Meu Perfil</span></li>
+                    <!-- ITEM ATUALIZADO ABAIXO -->
+                    <li class="nav-item" data-target="sites-section">
+                        <span class="material-symbols-outlined">hub</span>
+                        <span>Sistemas SunShield</span>
                     </li>
                 </ul>
             </nav>
             <div class="category-filters">
                 <h3>Categorias</h3>
                 <ul>
-                    <li class="category-item filter-btn active" data-category="all">
-                        <span class="material-symbols-outlined">inbox</span>
-                        <span>Todos</span>
-                    </li>
-                    <li class="category-item filter-btn" data-category="rh">
-                        <span class="material-symbols-outlined">groups</span>
-                        <span>RH</span>
-                    </li>
-                    <li class="category-item filter-btn" data-category="diretoria">
-                        <span class="material-symbols-outlined">corporate_fare</span>
-                        <span>Diretoria</span>
-                    </li>
-                    <li class="category-item filter-btn" data-category="ti">
-                        <span class="material-symbols-outlined">terminal</span>
-                        <span>TI</span>
-                    </li>
-                    <li class="category-item filter-btn" data-category="eventos">
-                        <span class="material-symbols-outlined">celebration</span>
-                        <span>Eventos</span>
-                    </li>
+                    <li class="category-item filter-btn active" data-category="all"><span class="material-symbols-outlined">inbox</span><span>Todos</span></li>
+                    <li class="category-item filter-btn" data-category="rh"><span class="material-symbols-outlined">groups</span><span>RH</span></li>
+                    <li class="category-item filter-btn" data-category="diretoria"><span class="material-symbols-outlined">corporate_fare</span><span>Diretoria</span></li>
+                    <li class="category-item filter-btn" data-category="ti"><span class="material-symbols-outlined">terminal</span><span>TI</span></li>
+                    <li class="category-item filter-btn" data-category="eventos"><span class="material-symbols-outlined">celebration</span><span>Eventos</span></li>
                 </ul>
             </div>
-            <div class="sidebar-footer">
-                <span class="material-symbols-outlined">logout</span>
-                <span>Sair</span>
-            </div>
+            <div class="sidebar-footer"><span class="material-symbols-outlined">logout</span><span>Sair</span></div>
         </aside>
 
         <div class="content-area">
@@ -134,44 +92,55 @@
                     <p id="page-subtitle-main">Olá, bem-vindo(a) de volta!</p>
                 </div>
                 <div class="header-actions">
-                    <div class="search-bar">
-                        <input type="search" placeholder="Buscar comunicados...">
-                        <span class="material-symbols-outlined">search</span>
-                    </div>
-                    <div class="notification-bell">
-                        <span class="material-symbols-outlined">notifications</span>
-                    </div>
+                    <div class="search-bar"><input type="search" placeholder="Buscar comunicados..."><span class="material-symbols-outlined">search</span></div>
+                    <div class="notification-bell"><span class="material-symbols-outlined">notifications</span></div>
                 </div>
             </header>
 
-            <main id="mural-section" class="main-content feed-container">
-            </main>
-
-            <main id="profile-section" class="main-content hidden">
-                <div class="profile-card">
-                    <h3>Minhas Informações</h3>
-                    <div class="info-group">
-                        <label>Nome</label>
-                        <p id="profile-name">Carregando...</p>
-                    </div>
-                    <div class="info-group">
-                        <label>Email</label>
-                        <p id="profile-email">Carregando...</p>
-                    </div>
-                    <div class="info-group">
-                        <label>Função</label>
-                        <p id="profile-role">Carregando...</p>
-                    </div>
+            <main id="mural-section" class="main-content feed-container"><!-- As notícias do Firestore serão carregadas aqui --></main>
+            <main id="profile-section" class="main-content hidden"><div class="profile-card"><h3>Minhas Informações</h3><div class="info-group"><label>Nome</label><p id="profile-name">Carregando...</p></div><div class="info-group"><label>Email</label><p id="profile-email">Carregando...</p></div><div class="info-group"><label>Função (Role)</label><p id="profile-role">Carregando...</p></div></div></main>
+            
+            <!-- SEÇÃO ATUALIZADA ABAIXO -->
+            <main id="sites-section" class="main-content hidden">
+                <div class="sites-grid">
+                    <!-- Card 1: SunControl -->
+                    <a href="https://nadrjmv.github.io/SunControl" target="_blank" class="site-card">
+                        <div class="site-card-icon" style="background-color: #e6f7ff; color: #1890ff;">
+                            <span class="material-symbols-outlined">compare_arrows</span>
+                        </div>
+                        <div class="site-card-content">
+                            <h3 class="site-card-title">SunControl</h3>
+                            <p class="site-card-description">Acesse o sistema de Troca de Plantão.</p>
+                        </div>
+                    </a>
+                    <!-- Card 2: Site Oficial -->
+                    <a href="https://sunshield.com.br" target="_blank" class="site-card">
+                        <div class="site-card-icon" style="background-color: #fffbe6; color: #faad14;">
+                            <span class="material-symbols-outlined">public</span>
+                        </div>
+                        <div class="site-card-content">
+                            <h3 class="site-card-title">Site Oficial SunShield</h3>
+                            <p class="site-card-description">Visite nossa página institucional.</p>
+                        </div>
+                    </a>
                 </div>
             </main>
 
-            <main id="files-section" class="main-content hidden">
-                <div class="placeholder-card">
-                    <span class="material-symbols-outlined">construction</span>
-                    <h3>Página de Arquivos</h3>
-                    <p>Esta funcionalidade está em desenvolvimento.</p>
+            <!-- NOVO RODAPÉ DE CONTATO -->
+            <footer class="content-footer">
+                <div class="footer-info">
+                    <p><strong>SunShield</strong></p>
+                    <p>Av. Renó Júnior, 389 - Medicina, Itajubá - MG, 37502-138</p>
+                    <p>gustavo@sunshield.com.br</p>
                 </div>
-            </main>
+                <div class="footer-social">
+                    <!-- Adicione os links corretos para suas redes -->
+                    <a href="https://instagram.com/sunshield_seg" target="_blank" title="Instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/500px-Instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://br.linkedin.com/company/sunshieldseg" target="_blank" title="LinkedIn"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/960px-LinkedIn_logo_initials.png" alt="LinkedIn"></a>
+                    <a href="mailto:gustavo@sunshield.com.br" target="_blank" title="Instagram"><img src="https://static.vecteezy.com/system/resources/thumbnails/014/440/980/small_2x/email-message-icon-design-in-blue-circle-png.png" alt="Email"></a>
+
+                </div>
+            </footer>
 
         </div>
     </div>
@@ -181,9 +150,7 @@
     <div id="news-modal-overlay" class="modal-overlay hidden">
         <div class="news-modal-content">
             <button id="news-modal-close" class="close-btn">&times;</button>
-            <div id="news-modal-body">
-                <!-- O conteúdo da notícia será injetado pelo JavaScript -->
-            </div>
+            <div id="news-modal-body"><!-- O conteúdo da notícia será injetado pelo JavaScript --></div>
         </div>
     </div>
 
