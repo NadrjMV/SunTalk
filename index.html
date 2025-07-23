@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunTalk - Bem-vindo</title>
+
+    <!-- Fontes e Ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/Pq5yVnqg/SunTalk.png">
+
+
+    <!-- Link para o arquivo de estilo principal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-container">
+        <div class="login-card">
+            <div class="branding-panel">
+                <img src="https://sunshield.com.br/wp-content/uploads/2024/12/cropped-sunshield-1-150x150.webp" alt="Logo SunShield" class="logo">
+                <h2>Bem-vindo ao SunTalk</h2>
+                <p>A plataforma de comunicação oficial da SunShield.</p>
+            </div>
+            <div class="form-panel">
+                <div id="login-form-container">
+                    <h3>Acesse sua Conta</h3>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <label for="login-email">E-mail</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-password">Senha</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="cta-button-blue">Entrar</button>
+                        <p class="toggle-link">Não tem uma conta? <a href="#" id="show-signup">Cadastre-se</a></p>
+                    </form>
+                </div>
+                <div id="signup-form-container" class="hidden">
+                    <h3>Crie sua Conta</h3>
+                    <form id="signup-form">
+                        <div class="input-group">
+                            <label for="signup-name">Nome Completo</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signup-email">E-mail Corporativo</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signup-password">Senha</label>
+                            <input type="password" id="signup-password" required>
+                        </div>
+                        <button type="submit" class="cta-button-blue">Criar Conta</button>
+                        <p class="toggle-link">Já tem uma conta? <a href="#" id="show-login">Faça o login</a></p>
+                    </form>
+                </div>
+    <div class="login-card">
+        </div> 
+        <footer class="page-footer">
+            <a href="https://www.instagram.com/weblv.dev" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.postimg.cc/xCxH4gGM/sd.png">
+            </a>
+        </footer>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container da Plataforma Principal (para colaboradores) -->
+    <div id="main-platform" class="hidden">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://sunshield.com.br/wp-content/uploads/2024/12/cropped-sunshield-1-150x150.webp" alt="Logo SunShield" class="logo-sidebar">
+            </div>
+            <nav class="main-nav">
+                <h3>Menu</h3>
+                <ul>
+                    <li class="nav-item active" data-target="mural-section">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span>Mural Principal</span>
+                    </li>
+                    <li class="nav-item" data-target="profile-section">
+                        <span class="material-symbols-outlined">person</span>
+                        <span>Meu Perfil</span>
+                    </li>
+                    <li class="nav-item" data-target="files-section">
+                        <span class="material-symbols-outlined">folder</span>
+                        <span>Arquivos</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="category-filters">
+                <h3>Categorias</h3>
+                <ul>
+                    <li class="category-item filter-btn active" data-category="all">
+                        <span class="material-symbols-outlined">inbox</span>
+                        <span>Todos</span>
+                    </li>
+                    <li class="category-item filter-btn" data-category="rh">
+                        <span class="material-symbols-outlined">groups</span>
+                        <span>RH</span>
+                    </li>
+                    <li class="category-item filter-btn" data-category="diretoria">
+                        <span class="material-symbols-outlined">corporate_fare</span>
+                        <span>Diretoria</span>
+                    </li>
+                    <li class="category-item filter-btn" data-category="ti">
+                        <span class="material-symbols-outlined">terminal</span>
+                        <span>TI</span>
+                    </li>
+                    <li class="category-item filter-btn" data-category="eventos">
+                        <span class="material-symbols-outlined">celebration</span>
+                        <span>Eventos</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <span class="material-symbols-outlined">logout</span>
+                <span>Sair</span>
+            </div>
+        </aside>
+
+        <div class="content-area">
+            <header class="content-header">
+                <div class="header-title">
+                    <h1 id="page-title-main">Mural de Comunicados</h1>
+                    <p id="page-subtitle-main">Olá, bem-vindo(a) de volta!</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="search" placeholder="Buscar comunicados...">
+                        <span class="material-symbols-outlined">search</span>
+                    </div>
+                    <div class="notification-bell">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </div>
+                </div>
+            </header>
+
+            <main id="mural-section" class="main-content feed-container">
+            </main>
+
+            <main id="profile-section" class="main-content hidden">
+                <div class="profile-card">
+                    <h3>Minhas Informações</h3>
+                    <div class="info-group">
+                        <label>Nome</label>
+                        <p id="profile-name">Carregando...</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Email</label>
+                        <p id="profile-email">Carregando...</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Função (Role)</label>
+                        <p id="profile-role">Carregando...</p>
+                    </div>
+                </div>
+            </main>
+
+            <main id="files-section" class="main-content hidden">
+                <div class="placeholder-card">
+                    <span class="material-symbols-outlined">construction</span>
+                    <h3>Página de Arquivos</h3>
+                    <p>Esta funcionalidade está em desenvolvimento.</p>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <div id="news-modal-overlay" class="modal-overlay hidden">
+        <div class="news-modal-content">
+            <button id="news-modal-close" class="close-btn">&times;</button>
+            <div id="news-modal-body">
+                <!-- O conteúdo da notícia será injetado pelo JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
