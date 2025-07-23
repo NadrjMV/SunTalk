@@ -1,4 +1,3 @@
-// Importa as funções necessárias do Firebase
 import { 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
@@ -23,11 +22,9 @@ const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('signup-form');
 const showSignupBtn = document.getElementById('show-signup');
 const showLoginBtn = document.getElementById('show-login');
-// Elementos do Modal de Notícias
 const newsModalOverlay = document.getElementById('news-modal-overlay');
 const newsModalBody = document.getElementById('news-modal-body');
 const newsModalCloseBtn = document.getElementById('news-modal-close');
-
 
 // --- SISTEMA DE NOTIFICAÇÃO (TOAST) ---
 function showToast(message, type = 'success') {
@@ -114,29 +111,16 @@ function initializePlatformLogic(userData) {
     const logoutBtn = document.querySelector('#main-platform .sidebar-footer');
     const filterButtons = document.querySelectorAll('#main-platform .sidebar .filter-btn');
 
-    // --- LÓGICA DO MODAL DE NOTÍCIAS ---
-    const openNewsModal = () => {
-        document.body.style.overflow = 'hidden';
-        newsModalOverlay.classList.remove('hidden');
-    }
-    const closeNewsModal = () => {
-        document.body.style.overflow = '';
-        newsModalOverlay.classList.add('hidden');
-    }
-
+    const openNewsModal = () => newsModalOverlay.classList.remove('hidden');
+    const closeNewsModal = () => newsModalOverlay.classList.add('hidden');
     newsModalCloseBtn.addEventListener('click', closeNewsModal);
     newsModalOverlay.addEventListener('click', (event) => {
-        if (event.target === newsModalOverlay) {
-            closeNewsModal();
-        }
+        if (event.target === newsModalOverlay) closeNewsModal();
     });
     window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !newsModalOverlay.classList.contains('hidden')) {
-            closeNewsModal();
-        }
+        if (event.key === 'Escape' && !newsModalOverlay.classList.contains('hidden')) closeNewsModal();
     });
 
-    // --- LÓGICA DE NAVEGAÇÃO DO MENU ---
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navItems.forEach(i => i.classList.remove('active'));
@@ -154,9 +138,9 @@ function initializePlatformLogic(userData) {
                 pageTitle.textContent = 'Meu Perfil';
                 pageSubtitle.textContent = 'Suas informações de cadastro na plataforma.';
                 loadUserProfile();
-            } else if (targetId === 'files-section') {
-                pageTitle.textContent = 'Arquivos';
-                pageSubtitle.textContent = 'Recursos e documentos compartilhados.';
+            } else if (targetId === 'sites-section') {
+                pageTitle.textContent = 'Sistemas SunShield';
+                pageSubtitle.textContent = 'Acesso rápido às nossas plataformas e sites.';
             }
         });
     });
@@ -168,9 +152,7 @@ function initializePlatformLogic(userData) {
         document.getElementById('profile-role').textContent = role;
     }
 
-    // --- LÓGICA DE CARREGAR E EXIBIR NOTÍCIAS ---
     let newsCache = [];
-
     async function loadNews() {
         if(!muralContainer) return;
         muralContainer.innerHTML = '<h3>Carregando notícias...</h3>';
