@@ -599,3 +599,91 @@ h1, h2, h3, h4, h5, h6 {
     height: 23px;
     opacity: 100;
 }
+
+.sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.site-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--dark-text);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+}
+
+.site-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--brand-blue);
+}
+
+.site-card-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-card-icon .material-symbols-outlined {
+    font-size: 32px;
+}
+
+.site-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.site-card-description {
+    font-size: 14px;
+    color: var(--light-text);
+    line-height: 1.5;
+}
+
+
+/* --- RODAPÉ DE CONTATO --- */
+.content-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Garante que funcione em telas menores */
+    gap: 20px; /* Espaçamento entre os itens */
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--light-text);
+}
+
+.footer-info p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.footer-social a:hover img {
+    opacity: 1;
+}
