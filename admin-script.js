@@ -47,33 +47,43 @@ function initializeAdminPanel(adminData) {
 
     const pageTitle = document.getElementById('page-title');
     const pageSubtitle = document.getElementById('page-subtitle');
-    const navItems = document.querySelectorAll('.nav-item');
+    const navItems = document.querySelectorAll('#admin-panel .nav-item');
     const contentSections = document.querySelectorAll('.main-content');
     const addNewsBtn = document.getElementById('add-news-btn');
     const newsListContainer = document.querySelector('.news-list-container');
     const userListContainer = document.querySelector('.user-list-container');
-    const logoutBtn = document.querySelector('.sidebar-footer');
+    const logoutBtn = document.querySelector('#admin-panel .sidebar-footer');
     const newsForm = document.getElementById('news-form');
     const formModal = document.getElementById('form-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const cancelBtn = document.getElementById('cancel-btn');
     const modalTitle = document.getElementById('modal-title');
+    const menuToggleBtn = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('#admin-panel .sidebar');
+
+    const sidebarOverlay = document.createElement('div');
+    sidebarOverlay.className = 'sidebar-overlay';
+    document.body.appendChild(sidebarOverlay);
+
+    const toggleMenu = () => {
+        sidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+    };
+
+    menuToggleBtn.addEventListener('click', toggleMenu);
+    sidebarOverlay.addEventListener('click', toggleMenu);
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            const targetSectionId = item.dataset.target;
-
-const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item');
-    adminNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Se o menu estiver aberto, feche-o
+            // Se o menu estiver aberto no modo mobile, feche-o
             if (sidebar.classList.contains('active')) {
                 toggleMenu();
             }
-        });
-    });
+            
+            // O código original continua abaixo
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            const targetSectionId = item.dataset.target;
 
             contentSections.forEach(section => section.classList.add('hidden'));
             const sectionToShow = document.getElementById(targetSectionId);
@@ -109,12 +119,14 @@ const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item
     });
 
     // --- SEÇÃO: GERENCIAR NOTÍCIAS ---
-    const openModal = () => formModal.classList.remove('hidden');
+    const openModal = () => {
+        modalTitle.textContent = 'Adicionar Notícia'; // Título padrão
+        formModal.classList.remove('hidden')
+    };
     const closeModal = () => {
         formModal.classList.add('hidden');
         newsForm.reset();
         delete newsForm.dataset.editingId;
-        modalTitle.textContent = 'Adicionar Notícia';
     };
     addNewsBtn.addEventListener('click', openModal);
     closeModalBtn.addEventListener('click', closeModal);
@@ -154,19 +166,34 @@ const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item
             imageUrl: document.getElementById('image-url').value,
             content: document.getElementById('content').value,
             author: adminData.name,
-            publishedAt: Timestamp.now()
+            // Mantém a data original se estiver editando, atualiza apenas se for uma notícia nova.
+            publishedAt: editingId ? (await getDoc(doc(db, "noticias", editingId))).data().publishedAt : Timestamp.now()
         };
+        
+        // Atualiza a data apenas se for uma edição, para manter a data de publicação original
+        const finalNewsData = { ...newsData };
+        if(editingId) {
+             const originalDoc = await getDoc(doc(db, "noticias", editingId));
+             finalNewsData.publishedAt = originalDoc.data().publishedAt;
+             // Adiciona um campo de data da última modificação
+             finalNewsData.lastUpdatedAt = Timestamp.now();
+        } else {
+            finalNewsData.publishedAt = Timestamp.now();
+        }
+
+
         try {
             if (editingId) {
-                await updateDoc(doc(db, "noticias", editingId), newsData);
+                await updateDoc(doc(db, "noticias", editingId), finalNewsData);
                 showToast('Notícia atualizada com sucesso!', 'success');
             } else {
-                await addDoc(collection(db, "noticias"), newsData);
+                await addDoc(collection(db, "noticias"), finalNewsData);
                 showToast('Notícia publicada com sucesso!', 'success');
             }
             closeModal();
             loadAdminNews();
         } catch (error) {
+            console.error("Erro ao salvar notícia:", error);
             showToast('Erro ao salvar notícia.', 'error');
         }
     });
@@ -181,7 +208,7 @@ const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item
                 const data = docSnap.data();
                 document.getElementById('title').value = data.title;
                 document.getElementById('category').value = data.category;
-                document.getElementById('image-url').value = data.imageUrl;
+                document.getElementById('image-url').value = data.imageUrl || '';
                 document.getElementById('content').value = data.content;
                 newsForm.dataset.editingId = docId;
                 modalTitle.textContent = 'Editar Notícia';
