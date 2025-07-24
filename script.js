@@ -143,6 +143,15 @@ function initializePlatformLogic(userData) {
     menuToggleBtn.addEventListener('click', toggleMenu);
     sidebarOverlay.addEventListener('click', toggleMenu);
 
+    const navLinks = document.querySelectorAll('#main-platform .sidebar .nav-item');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+
     const openNewsModal = () => newsModalOverlay.classList.remove('hidden');
     const closeNewsModal = () => newsModalOverlay.classList.add('hidden');
     newsModalCloseBtn.addEventListener('click', closeNewsModal);
