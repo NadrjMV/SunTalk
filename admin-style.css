@@ -262,3 +262,31 @@ textarea { resize: vertical; }
         margin-right: 0;
     }
 }
+
+/* --- Estilo para a dica de upload de imagem --- */
+.image-upload-tip {
+    font-size: 13px;
+    color: var(--light-text);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--light-grey-bg);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.image-upload-tip .material-symbols-outlined {
+    font-size: 18px;
+    color: var(--brand-blue);
+}
+
+.image-upload-tip a {
+    color: var(--brand-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.image-upload-tip a:hover {
+    text-decoration: underline;
+}
