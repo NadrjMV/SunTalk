@@ -124,13 +124,9 @@ function initializePlatformLogic(userData) {
     const muralContainer = document.getElementById('mural-section');
     const logoutBtn = document.querySelector('#main-platform .sidebar-footer');
     const filterButtons = document.querySelectorAll('#main-platform .sidebar .filter-btn');
-
-    // ... (suas constantes existentes como pageTitle, navItems, etc.)
-
     const menuToggleBtn = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
+    const sidebar = document.querySelector('#main-platform .sidebar');
 
-    // Cria o overlay dinamicamente
     const sidebarOverlay = document.createElement('div');
     sidebarOverlay.className = 'sidebar-overlay';
     document.body.appendChild(sidebarOverlay);
@@ -142,15 +138,6 @@ function initializePlatformLogic(userData) {
 
     menuToggleBtn.addEventListener('click', toggleMenu);
     sidebarOverlay.addEventListener('click', toggleMenu);
-
-    const navLinks = document.querySelectorAll('#main-platform .sidebar .nav-item');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (sidebar.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    });
 
     const openNewsModal = () => newsModalOverlay.classList.remove('hidden');
     const closeNewsModal = () => newsModalOverlay.classList.add('hidden');
@@ -164,6 +151,12 @@ function initializePlatformLogic(userData) {
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
+            // Se o menu estiver aberto no modo mobile, feche-o
+            if (sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+
+            // O código original continua abaixo
             navItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
             const targetId = item.dataset.target;
@@ -244,10 +237,11 @@ function initializePlatformLogic(userData) {
             const newsId = card.dataset.newsId;
             const newsData = newsCache.find(n => n.id === newsId);
             if (newsData) {
+                const categoryColor = { diretoria: '#FCA311', rh: '#1E90FF', ti: '#6c757d', eventos: '#32CD32', geral: '#6f42c1' }[newsData.category] || '#6c757d';
                 newsModalBody.innerHTML = `
                     ${newsData.imageUrl ? `<img class="modal-image" src="${newsData.imageUrl}" alt="Imagem da notícia">` : ''}
                     <div class="modal-header-info">
-                        <span class="card-category" style="background-color: #FCA311;">${newsData.category}</span>
+                        <span class="card-category" style="background-color: ${categoryColor};">${newsData.category}</span>
                         <h2>${newsData.title}</h2>
                         <p class="modal-meta">Por <strong>${newsData.author}</strong> em ${newsData.publishedAt.toDate().toLocaleDateString('pt-BR')}</p>
                     </div>
