@@ -111,6 +111,24 @@ function initializePlatformLogic(userData) {
     const logoutBtn = document.querySelector('#main-platform .sidebar-footer');
     const filterButtons = document.querySelectorAll('#main-platform .sidebar .filter-btn');
 
+    // ... (suas constantes existentes como pageTitle, navItems, etc.)
+
+    const menuToggleBtn = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Cria o overlay dinamicamente
+    const sidebarOverlay = document.createElement('div');
+    sidebarOverlay.className = 'sidebar-overlay';
+    document.body.appendChild(sidebarOverlay);
+
+    const toggleMenu = () => {
+        sidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+    };
+
+    menuToggleBtn.addEventListener('click', toggleMenu);
+    sidebarOverlay.addEventListener('click', toggleMenu);
+
     const openNewsModal = () => newsModalOverlay.classList.remove('hidden');
     const closeNewsModal = () => newsModalOverlay.classList.add('hidden');
     newsModalCloseBtn.addEventListener('click', closeNewsModal);
