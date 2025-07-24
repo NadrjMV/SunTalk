@@ -114,7 +114,7 @@ const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item
         formModal.classList.add('hidden');
         newsForm.reset();
         delete newsForm.dataset.editingId;
-        modalTitle.textContent = 'Adicionar Nova Notícia';
+        modalTitle.textContent = 'Adicionar Notícia';
     };
     addNewsBtn.addEventListener('click', openModal);
     closeModalBtn.addEventListener('click', closeModal);
