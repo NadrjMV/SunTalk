@@ -65,6 +65,16 @@ function initializeAdminPanel(adminData) {
             item.classList.add('active');
             const targetSectionId = item.dataset.target;
 
+const adminNavLinks = document.querySelectorAll('#admin-panel .sidebar .nav-item');
+    adminNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Se o menu estiver aberto, feche-o
+            if (sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+
             contentSections.forEach(section => section.classList.add('hidden'));
             const sectionToShow = document.getElementById(targetSectionId);
             if (sectionToShow) sectionToShow.classList.remove('hidden');
