@@ -56,7 +56,7 @@
     </div>
     <button id="add-news-btn" class="cta-button">
         <span class="material-symbols-outlined">add_circle</span>
-        Adicionar Notícia
+        Adicionar Nova Notícia
     </button>
 </header>
 
@@ -95,7 +95,7 @@
         <div class="modal-content">
             <form id="news-form">
                 <div class="modal-header">
-                    <h2 id="modal-title">Adicionar Notícia</h2>
+                    <h2 id="modal-title">Adicionar Nova Notícia</h2>
                     <button type="button" id="close-modal-btn" class="close-btn">&times;</button>
                 </div>
                 <div class="form-group">
@@ -113,10 +113,17 @@
                         <option value="geral">Geral</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="image-url">URL da Imagem de Destaque (Opcional)</label>
-                    <input type="text" id="image-url" name="image-url" placeholder="https://exemplo.com/imagem.jpg">
-                </div>
+         <div class="form-group">
+    <label for="image-url">URL da Imagem de Destaque (Opcional)</label>
+    <input type="text" id="image-url" name="image-url" placeholder="https://exemplo.com/imagem.jpg">
+    
+    <p class="image-upload-tip">
+        <span class="material-symbols-outlined">arrow_upward</span>
+        Para obter um link, suba a imagem no 
+        <a href="https://imgur.com/upload" target="_blank" rel="noopener noreferrer">Imgur</a>, 
+        clique com o botão direito na imagem enviada e selecione "Copiar endereço da imagem".
+    </p>
+    </div>
                 <div class="form-group">
                     <label for="content">Conteúdo Completo</label>
                     <textarea id="content" name="content" rows="8" required></textarea>
