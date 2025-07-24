@@ -42,22 +42,33 @@ function showToast(message, type = 'success') {
 // --- CONTROLE PRINCIPAL DE AUTENTICAÇÃO ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
+        // Usuário está logado
         const userDocRef = doc(db, "users", user.uid);
         try {
             const userDoc = await getDoc(userDocRef);
             if (userDoc.exists()) {
-                if (userDoc.data().role === 'adm') {
+                const userData = userDoc.data();
+                if (userData.role === 'adm') {
                     if (!window.location.pathname.endsWith('admin.html')) {
                        window.location.replace('admin.html');
                     }
                 } else {
                     loginContainer.classList.add('hidden');
                     mainPlatform.classList.remove('hidden');
-                    initializePlatformLogic(userDoc.data());
+                    initializePlatformLogic(userData);
+
+                    setTimeout(() => {
+                        if (performance.getEntriesByType("navigation")[0].type !== "reload") {
+                             showToast(`Bem-vindo(a), ${userData.name.split(' ')[0]}!`, 'success');
+                        }
+                    }, 300);
                 }
-            } else { throw new Error("Dados do usuário não encontrados."); }
+            } else { 
+                throw new Error("Dados do usuário não encontrados."); 
+            }
         } catch (error) {
             console.error("Erro ao verificar função do usuário:", error);
+            showToast('Erro ao carregar dados do usuário. Tente novamente.', 'error');
             signOut(auth);
         }
     } else {
@@ -91,13 +102,16 @@ if (loginForm) {
         }
     });
 
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => showToast('Login realizado com sucesso!', 'success'))
-            .catch(() => showToast('E-mail ou senha incorretos.', 'error'));
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (error) {
+            showToast('E-mail ou senha incorretos.', 'error');
+            console.error("Erro de login:", error);
+        }
     });
 }
 
