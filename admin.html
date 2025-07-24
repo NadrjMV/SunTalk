@@ -3,160 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SunTalk - Bem-vindo</title>
+    <title>Painel de Administração - SunTalk</title>
 
     <!-- Fontes e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/Pq5yVnqg/SunTalk.png">
 
-    <!-- Link para o arquivo de estilo principal -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Link para o arquivo de estilo do admin -->
+    <link rel="stylesheet" href="admin-style.css">
 </head>
-<body>
+<body style="display: none;">
 
-    <!-- Container do Login/Cadastro -->
-    <div id="login-container">
-        <div class="login-card">
-            <div class="branding-panel">
-                <img src="https://sunshield.com.br/wp-content/uploads/2024/12/cropped-sunshield-1-150x150.webp" alt="Logo SunShield" class="logo">
-                <h2>Bem-vindo ao SunTalk</h2>
-                <p>A plataforma de comunicação oficial da SunShield.</p>
-            </div>
-            <div class="form-panel">
-                <div id="login-form-container">
-                    <h3>Acesse sua Conta</h3>
-                    <form id="login-form">
-                        <div class="input-group"><label for="login-email">E-mail</label><input type="email" id="login-email" required></div>
-                        <div class="input-group"><label for="login-password">Senha</label><input type="password" id="login-password" required></div>
-                        <button type="submit" class="cta-button-blue">Entrar</button>
-                        <p class="toggle-link">Não tem uma conta? <a href="#" id="show-signup">Cadastre-se</a></p>
-                    </form>
-                </div>
-                <div id="signup-form-container" class="hidden">
-                    <h3>Crie sua Conta</h3>
-                    <form id="signup-form">
-                        <div class="input-group"><label for="signup-name">Nome Completo</label><input type="text" id="signup-name" required></div>
-                        <div class="input-group"><label for="signup-email">E-mail Corporativo</label><input type="email" id="signup-email" required></div>
-                        <div class="input-group"><label for="signup-password">Senha</label><input type="password" id="signup-password" required></div>
-                        <button type="submit" class="cta-button-blue">Criar Conta</button>
-                        <p class="toggle-link">Já tem uma conta? <a href="#" id="show-login">Faça o login</a></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <a href="https://www.instagram.com/weblv.dev" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.postimg.cc/xCxH4gGM/sd.png">
-            </a>
-        </footer>
-    </div>
-
-    <!-- Container da Plataforma Principal (para colaboradores) -->
-    <div id="main-platform" class="hidden">
+    <div id="admin-panel">
         <aside class="sidebar">
             <div class="sidebar-header">
                 <img src="https://sunshield.com.br/wp-content/uploads/2024/12/cropped-sunshield-1-150x150.webp" alt="Logo SunShield" class="logo-sidebar">
             </div>
             <nav class="main-nav">
-                <h3>Menu</h3>
+                <h3>Menu Principal</h3>
                 <ul>
-                    <li class="nav-item active" data-target="mural-section"><span class="material-symbols-outlined">dashboard</span><span>Mural Principal</span></li>
-                    <li class="nav-item" data-target="profile-section"><span class="material-symbols-outlined">person</span><span>Meu Perfil</span></li>
-                    <!-- ITEM ATUALIZADO ABAIXO -->
-                    <li class="nav-item" data-target="sites-section">
-                        <span class="material-symbols-outlined">hub</span>
-                        <span>Sistemas SunShield</span>
+                    <li class="nav-item active" data-target="news-management-section">
+                        <span class="material-symbols-outlined">edit_square</span>
+                        <span>Gerenciar Notícias</span>
+                    </li>
+                    <li class="nav-item" data-target="users-management-section">
+                        <span class="material-symbols-outlined">shield_person</span>
+                        <span>Gerenciar Usuários</span>
+                    </li>
+                    <li class="nav-item" data-target="stats-section">
+                        <span class="material-symbols-outlined">analytics</span>
+                        <span>Estatísticas</span>
                     </li>
                 </ul>
             </nav>
-            <div class="category-filters">
-                <h3>Categorias</h3>
-                <ul>
-                    <li class="category-item filter-btn active" data-category="all"><span class="material-symbols-outlined">inbox</span><span>Todos</span></li>
-                    <li class="category-item filter-btn" data-category="rh"><span class="material-symbols-outlined">groups</span><span>RH</span></li>
-                    <li class="category-item filter-btn" data-category="diretoria"><span class="material-symbols-outlined">corporate_fare</span><span>Diretoria</span></li>
-                    <li class="category-item filter-btn" data-category="ti"><span class="material-symbols-outlined">terminal</span><span>TI</span></li>
-                    <li class="category-item filter-btn" data-category="eventos"><span class="material-symbols-outlined">celebration</span><span>Eventos</span></li>
-                </ul>
+            <div class="sidebar-footer">
+                <span class="material-symbols-outlined">logout</span>
+                <span>Sair</span>
             </div>
-            <div class="sidebar-footer"><span class="material-symbols-outlined">logout</span><span>Sair</span></div>
         </aside>
 
+        <!-- Área de Conteúdo Principal -->
         <div class="content-area">
 <header class="content-header">
     <button id="menu-toggle" class="menu-toggle-btn">
         <span class="material-symbols-outlined">menu</span>
     </button>
     <div class="header-title">
-        <h1 id="page-title-main">Mural de Comunicados</h1>
-        <p id="page-subtitle-main">Olá, bem-vindo(a) de volta!</p>
+        <h1 id="page-title">Gerenciar Notícias</h1>
+        <p id="page-subtitle">Adicione, edite ou remova comunicados da plataforma.</p>
     </div>
-    <div class="header-actions">
-        </div>
+    <button id="add-news-btn" class="cta-button">
+        <span class="material-symbols-outlined">add_circle</span>
+        Adicionar Nova Notícia
+    </button>
 </header>
 
-            <main id="mural-section" class="main-content feed-container"><!-- As notícias do Firestore serão carregadas aqui --></main>
-            <main id="profile-section" class="main-content hidden"><div class="profile-card"><h3>Minhas Informações</h3><div class="info-group"><label>Nome</label><p id="profile-name">Carregando...</p></div><div class="info-group"><label>Email</label><p id="profile-email">Carregando...</p></div><div class="info-group"><label>Função (Role)</label><p id="profile-role">Carregando...</p></div></div></main>
-            
-            <!-- SEÇÃO ATUALIZADA ABAIXO -->
-            <main id="sites-section" class="main-content hidden">
-                <div class="sites-grid">
-                    <!-- Card 1: SunControl -->
-                    <a href="https://nadrjmv.github.io/SunControl" target="_blank" class="site-card">
-                        <div class="site-card-icon" style="background-color: #e6f7ff; color: #1890ff;">
-                            <span class="material-symbols-outlined">compare_arrows</span>
-                        </div>
-                        <div class="site-card-content">
-                            <h3 class="site-card-title">SunControl</h3>
-                            <p class="site-card-description">Acesse o sistema de Troca de Plantão.</p>
-                        </div>
-                    </a>
-                    <!-- Card 2: Site Oficial -->
-                    <a href="https://sunshield.com.br" target="_blank" class="site-card">
-                        <div class="site-card-icon" style="background-color: #fffbe6; color: #faad14;">
-                            <span class="material-symbols-outlined">public</span>
-                        </div>
-                        <div class="site-card-content">
-                            <h3 class="site-card-title">Site Oficial SunShield</h3>
-                            <p class="site-card-description">Visite nossa página institucional.</p>
-                        </div>
-                    </a>
+            <main id="news-management-section" class="main-content">
+                <div class="news-list-container">
                 </div>
             </main>
 
-            <!-- NOVO RODAPÉ DE CONTATO -->
-            <footer class="content-footer">
-                <div class="footer-info">
-                    <p><strong>SunShield</strong></p>
-                    <p>Av. Renó Júnior, 389 - Medicina, Itajubá - MG, 37502-138</p>
-                    <p>gustavo@sunshield.com.br</p>
+            <main id="users-management-section" class="main-content hidden">
+                <div class="user-list-container">
                 </div>
-                <div class="footer-social">
-                    <!-- Adicione os links corretos para suas redes -->
-                    <a href="https://instagram.com/sunshield_seg" target="_blank" title="Instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/500px-Instagram_icon.png" alt="Instagram"></a>
-                    <a href="https://br.linkedin.com/company/sunshieldseg" target="_blank" title="LinkedIn"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/960px-LinkedIn_logo_initials.png" alt="LinkedIn"></a>
-                    <a href="mailto:gustavo@sunshield.com.br" target="_blank" title="Instagram"><img src="https://static.vecteezy.com/system/resources/thumbnails/014/440/980/small_2x/email-message-icon-design-in-blue-circle-png.png" alt="Email"></a>
+            </main>
 
+            <!-- Seção de Estatísticas -->
+            <main id="stats-section" class="main-content hidden">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 class="stat-value" id="stats-total-news">0</h3>
+                        <p class="stat-label">Notícias Publicadas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-value" id="stats-total-users">0</h3>
+                        <p class="stat-label">Usuários Cadastrados</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-value" id="stats-total-admins">0</h3>
+                        <p class="stat-label">Administradores</p>
+                    </div>
                 </div>
-            </footer>
+            </main>
+        </div>
+    </div>
 
+    <!-- Modal pra Adicionar/Editar Notícia -->
+    <div id="form-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <form id="news-form">
+                <div class="modal-header">
+                    <h2 id="modal-title">Adicionar Nova Notícia</h2>
+                    <button type="button" id="close-modal-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label for="title">Título da Notícia</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="diretoria">Diretoria</option>
+                        <option value="rh">RH</option>
+                        <option value="ti">TI</option>
+                        <option value="eventos">Eventos</option>
+                        <option value="geral">Geral</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image-url">URL da Imagem de Destaque (Opcional)</label>
+                    <input type="text" id="image-url" name="image-url" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="content">Conteúdo Completo</label>
+                    <textarea id="content" name="content" rows="8" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-btn" class="cancel-btn">Cancelar</button>
+                    <button type="submit" class="cta-button">Salvar Notícia</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <div id="toast-container"></div>
 
-    <div id="news-modal-overlay" class="modal-overlay hidden">
-        <div class="news-modal-content">
-            <button id="news-modal-close" class="close-btn">&times;</button>
-            <div id="news-modal-body"><!-- O conteúdo da notícia será injetado pelo JavaScript --></div>
-        </div>
-    </div>
-
     <script type="module" src="firebase-config.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="admin-script.js"></script>
 
 </body>
 </html>
