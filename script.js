@@ -42,7 +42,6 @@ function showToast(message, type = 'success') {
 // --- CONTROLE PRINCIPAL DE AUTENTICAÇÃO ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        // Usuário está logado
         const userDocRef = doc(db, "users", user.uid);
         try {
             const userDoc = await getDoc(userDocRef);
@@ -56,7 +55,6 @@ onAuthStateChanged(auth, async (user) => {
                     loginContainer.classList.add('hidden');
                     mainPlatform.classList.remove('hidden');
                     initializePlatformLogic(userData);
-
                     setTimeout(() => {
                         if (performance.getEntriesByType("navigation")[0].type !== "reload") {
                              showToast(`Bem-vindo(a), ${userData.name.split(' ')[0]}!`, 'success');
@@ -151,19 +149,15 @@ function initializePlatformLogic(userData) {
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Se o menu estiver aberto no modo mobile, feche-o
             if (sidebar.classList.contains('active')) {
                 toggleMenu();
             }
-
-            // O código original continua abaixo
             navItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
             const targetId = item.dataset.target;
             mainContentSections.forEach(section => section.classList.add('hidden'));
             const sectionToShow = document.getElementById(targetId);
             if(sectionToShow) sectionToShow.classList.remove('hidden');
-
             if (targetId === 'mural-section') {
                 pageTitle.textContent = 'Mural de Comunicados';
                 pageSubtitle.textContent = `Olá, bem-vindo(a) de volta, ${userData.name.split(' ')[0]}!`;
@@ -213,10 +207,20 @@ function initializePlatformLogic(userData) {
     
     function createNewsCardHTML(news) {
         const categoryColors = { diretoria: '#FCA311', rh: '#1E90FF', ti: '#6c757d', eventos: '#32CD32', geral: '#6f42c1' };
+        const categoryIcons = { diretoria: 'corporate_fare', rh: 'groups', ti: 'terminal', eventos: 'celebration', geral: 'inbox' };
+        
         const categoryColor = categoryColors[news.category] || '#6c757d';
+        const iconName = categoryIcons[news.category] || 'inbox';
+        const hasImage = news.imageUrl && news.imageUrl.trim() !== '';
+
         return `
-            <div class="card" data-news-id="${news.id}" data-category="${news.category}">
-                ${news.imageUrl ? `<img class="card-image" src="${news.imageUrl}" alt="Imagem da notícia">` : ''}
+            <div 
+                class="card ${!hasImage ? 'card--no-image' : ''}" 
+                data-news-id="${news.id}" 
+                data-category="${news.category}"
+                ${!hasImage ? `data-category-icon="${iconName}" style="--category-color: ${categoryColor}"` : ''}
+            >
+                ${hasImage ? `<img class="card-image" src="${news.imageUrl}" alt="Imagem da notícia">` : ''}
                 <div class="card-body">
                     <div class="card-header">
                         <span class="card-category" style="background-color: ${categoryColor};">${news.category}</span>
@@ -237,7 +241,8 @@ function initializePlatformLogic(userData) {
             const newsId = card.dataset.newsId;
             const newsData = newsCache.find(n => n.id === newsId);
             if (newsData) {
-                const categoryColor = { diretoria: '#FCA311', rh: '#1E90FF', ti: '#6c757d', eventos: '#32CD32', geral: '#6f42c1' }[newsData.category] || '#6c757d';
+                const categoryColors = { diretoria: '#FCA311', rh: '#1E90FF', ti: '#6c757d', eventos: '#32CD32', geral: '#6f42c1' };
+                const categoryColor = categoryColors[newsData.category] || '#6c757d';
                 newsModalBody.innerHTML = `
                     ${newsData.imageUrl ? `<img class="modal-image" src="${newsData.imageUrl}" alt="Imagem da notícia">` : ''}
                     <div class="modal-header-info">
