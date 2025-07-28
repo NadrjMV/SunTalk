@@ -250,7 +250,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 28px;
 }
 
-
 /* Overlay para o menu mobile */
 .sidebar-overlay {
     display: none;
@@ -265,7 +264,6 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-overlay.active {
     display: block;
 }
-
 
 /* Área de Conteúdo */
 .content-area {
@@ -641,4 +639,38 @@ main.main-content {
     .form-panel h3 { font-size: 24px; }
     #news-modal-body .modal-header-info, #news-modal-body .modal-content-text { padding: 20px; }
     #news-modal-body h2 { font-size: 22px; }
+}
+
+/* --- ESTILO ESPECIAL PARA CARDS SEM FOTP --- */
+.card--no-image {
+    position: relative;
+    justify-content: center;
+    overflow: hidden;
+    border-left: 5px solid var(--category-color, var(--accent-color));
+}
+
+.card--no-image .card-body {
+    flex-grow: 0;
+    text-align: center;
+    z-index: 1;
+}
+
+.card--no-image .card-header {
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card--no-image::before {
+    content: attr(data-category-icon);
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 1;
+    font-size: 120px;
+    color: var(--dark-text);
+    position: absolute;
+    z-index: 0;
+    opacity: 0.07;
+    right: -20px;
+    bottom: -30px;
+    pointer-events: none;
 }
