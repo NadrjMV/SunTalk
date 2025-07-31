@@ -674,3 +674,23 @@ main.main-content {
     bottom: -30px;
     pointer-events: none;
 }
+
+/* --- AJUSTES E MELHORIAS NA SEÇÃO DE SISTEMAS --- */
+.sites-grid {
+    /* Esta regra otimiza a grade para até 3 colunas em telas maiores */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.site-card-icon {
+    /* Garante que o ícone fique perfeitamente centralizado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ajuste fino para telas muito grandes, limitando a 3 colunas */
+@media (min-width: 1400px) {
+    .sites-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
